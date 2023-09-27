@@ -1,0 +1,126 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="ASP.site" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head runat="server">
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" type="image/png" href="assets/images/favicon.ico" />
+    <link href="dash/css/app.css" rel="stylesheet">
+    <link href="dash/css/custom.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        function OnLinkClick(id, visibleIndex) {
+            Swal.fire({
+                title: '¿Desea borrar el elemento seleccionado?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '<%= ConfigurationManager.AppSettings["colorAceptar"] %>',
+            cancelButtonColor: '<%= ConfigurationManager.AppSettings["colorCancelar"] %>',
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                ASPxGridView1.DeleteRow(visibleIndex);
+            }
+        });
+        }
+    </script>
+    <style>
+        .sidebar-item.active .sidebar-link:hover, .sidebar-item.active>.sidebar-link {
+            border-left-color: <%= ConfigurationManager.AppSettings["colorSecundario"] %>;
+        }
+        .sidebar-header {
+            color: <%= ConfigurationManager.AppSettings["colorPrincipal"] %>;
+        }
+        .sidebar-item.active .sidebar-link:hover, .sidebar-item.active>.sidebar-link {
+            background: linear-gradient(90deg, <%= ConfigurationManager.AppSettings["colorSecundario"] %> -100%, <%= ConfigurationManager.AppSettings["colorSecundarioLight"] %> 50%,transparent);
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+  </head>
+  <body>
+    <form id="form1" runat="server">
+      <div class="wrapper">
+        <nav id="sidebar" class="sidebar js-sidebar">
+          <div class="sidebar-content js-simplebar" style="background-color:#fff;">
+            <a class="sidebar-brand" runat="server" id="brandLogo">
+              <span class="align-middle">
+                <img src="assets/images/logoBody.png" class="logo">
+              </span>
+            </a>
+            <ul class="sidebar-nav">
+              <li class="sidebar-header" style="padding-top:0px;">
+                <strong>CATEGORÍA </strong>
+              </li>
+              <li class="sidebar-item" runat="server" id="dash">
+                <asp:LinkButton CssClass="sidebar-link" ID="dashLink" runat="server" OnClick="redirect">
+                  <i class="align-middle icon" data-feather="book"></i>
+                  <span class="align-middle">BOTÓN </span>
+                </asp:LinkButton>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="main">
+          <nav class="navbar navbar-expand navbar-light navbar-bg">
+            <a class="sidebar-toggle js-sidebar-toggle">
+              <i class="hamburger align-self-center"></i>
+            </a>
+            <div class="navbar-collapse collapse">
+              <ul class="navbar-nav navbar-align">
+                <li class="nav-item dropdown">
+                  <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                    <i class="align-middle" data-feather="settings"></i>
+                  </a>
+                  <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown" style="color:#646464;">
+                    <span class="text-dark">
+                      <asp:Label ID="txtUsuario" runat="server" Text="Label" style="font-weight: bold; color:#646464;"></asp:Label>
+                    </span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end">
+                    <asp:LinkButton ID="salirLink" CssClass="dropdown-item" runat="server" Text="Salir" OnClick="redirect" />
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <main class="content">
+            <div class="container-fluid p-0">
+              <h1 class="h3 mb-3" style="color:#646464;font-weight: 600;">
+                <asp:Label ID="titulo" runat="server"></asp:Label>
+              </h1>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+          <footer class="footer">
+            <div class="container-fluid">
+              <div class="row text-muted">
+                <div class="col-6 text-start">
+                  <p class="mb-0">
+                    <a class="text-muted" href="https://infonetconsultores.com/" target="_blank">
+                      <strong>Infonet Consultores </strong>
+                    </a> &copy; <script>
+                                    document.write(new Date().getFullYear());
+                    </script>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </form>
+    <script src="dash/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+.sidebar-item.active .sidebar-link:hover, .sidebar-item.active>.sidebar-link {
+    color: #646464;
+}
+
+.sidebar-header {
+    background: transparent;
+    font-size: 1rem;
+    padding: 1.5rem 1.5rem .375rem;
+}
+
+.hamburger, .hamburger:after, .hamburger:before {
+    background: #646464;
+    border-radius: 1px;
+    content: "";
+    cursor: pointer;
+    display: block;
+    height: 3px;
+    transition: background .1s ease-in-out,color .1s ease-in-out;
+    width: 24px;
+}
+
+.sidebar-toggle:hover .hamburger, .sidebar-toggle:hover .hamburger:after, .sidebar-toggle:hover .hamburger:before {
+    background: #646464;
+}
+
+.logo{
+    width:100%;
+}
+
+.sidebar-link, a.sidebar-link {
+    background: #fff;
+    border-left: 3px solid transparent;
+    color: #646464;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    padding: .625rem 1.625rem;
+    position: relative;
+    text-decoration: none;
+    transition: background .1s ease-in-out;
+}
+
+.sidebar-link:hover, .sidebar-link:hover i, .sidebar-link:hover svg {
+    color: #646464;
+}
+
+.sidebar-link:hover {
+    background: white;
+}
+
+.icon{
+     color:#646464 !important;
+}
+
+.dxgvControl_MaterialCompact a
+{
+    text-decoration: none;
+}
+
+.dxflRequired_FertinagroTheme {
+    font-style: normal;
+}
